@@ -137,7 +137,7 @@ notesListEl.addEventListener('click', e => {
   const delBtn = e.target.closest('.note-item-delete');
   if (delBtn) {
     const id = delBtn.dataset.id;
-    if (confirm('¿Delete this note?')) {
+    if (confirm('Delete this note?')) {
       deleteCurrentNoteById(id);
     }
     return;

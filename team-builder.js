@@ -164,6 +164,15 @@ function deleteTeam(id) {
   renderTeams();
 }
 
+function renameTeam(id, newName) {
+  const team = teams.find(t => t.id === id);
+  if (team) {
+    team.name = newName;
+    saveTeams();  // Guarda en localStorage
+    renderTeams(); // Actualiza la lista
+  }
+}
+
 function addCurrentPokemonToSelectedTeam() {
   const result = getCurrentPokemonData();
 
@@ -278,7 +287,7 @@ function renderTeams() {
     deleteBtn.className = 'btn-delete-team';
     deleteBtn.textContent = 'Del';
     deleteBtn.addEventListener('click', () => {
-      if (confirm(`¿Eliminar ${team.name}?`)) {
+      if (confirm(`Remove ${team.name}?`)) {
         deleteTeam(team.id);
       }
     });

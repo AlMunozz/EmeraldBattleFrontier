@@ -82,7 +82,7 @@ checkboxes.forEach(cb => {
 
 // botón reset
 clearBtn.addEventListener('click', () => {
-  if (!confirm('¿Reset all symbols?')) return;
+  if (!confirm('Reset all symbols?')) return;
   checkboxes.forEach(cb => cb.checked = false);
   saveState();
   updateProgress();
