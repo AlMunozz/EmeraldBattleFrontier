@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Battle Frontier Checklist</title>
+  <link rel="stylesheet" href="checklist.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <h1>Battle Frontier Checklist</h1>
+    <nav class="mode-switch">
+      <a class="mode-link" href="index.html">Encounters</a>
+      <a class="mode-link" href="team-builder.html">Team Builder</a>
+      <a class="mode-link" href="notes.html">Notes</a>
+      <a class="mode-link" href="damage-calc.html">Damage Calculator</a>
+    </nav>
+  </header>
+
+  <main class="cl-container">
+    <section class="cl-panel">
+      <div class="cl-header">
+        <h2>Symbols</h2>
+        <button id="cl-clear">Reset</button>
+      </div>
+
+      <div class="cl-list">
+        <h3>Silver Symbols</h3>
+        <label><input type="checkbox" data-symbol="silver_tower"> Battle Tower (Anabel)</label>
+        <label><input type="checkbox" data-symbol="silver_dome"> Battle Dome (Tucker)</label>
+        <label><input type="checkbox" data-symbol="silver_palace"> Battle Palace (Spenser)</label>
+        <label><input type="checkbox" data-symbol="silver_arena"> Battle Arena (Greta)</label>
+        <label><input type="checkbox" data-symbol="silver_factory"> Battle Factory (Noland)</label>
+        <label><input type="checkbox" data-symbol="silver_pike"> Battle Pike (Lucy)</label>
+        <label><input type="checkbox" data-symbol="silver_pyramid"> Battle Pyramid (Brandon)</label>
+
+        <h3>Gold Symbols</h3>
+        <label><input type="checkbox" data-symbol="gold_tower"> Battle Tower (Anabel)</label>
+        <label><input type="checkbox" data-symbol="gold_dome"> Battle Dome (Tucker)</label>
+        <label><input type="checkbox" data-symbol="gold_palace"> Battle Palace (Spenser)</label>
+        <label><input type="checkbox" data-symbol="gold_arena"> Battle Arena (Greta)</label>
+        <label><input type="checkbox" data-symbol="gold_factory"> Battle Factory (Noland)</label>
+        <label><input type="checkbox" data-symbol="gold_pike"> Battle Pike (Lucy)</label>
+        <label><input type="checkbox" data-symbol="gold_pyramid"> Battle Pyramid (Brandon)</label>
+      </div>
+    </section>
+
+    <section class="cl-progress">
+      <h2>Progress</h2>
+      <div class="cl-progress-circle">
+        <span id="cl-percent">0%</span>
+      </div>
+      <p id="cl-count">0/14 symbols Completed</p>
+    </section>
+  </main>
+
+  <script src="checklist.js"></script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f0f23;
+  color: #e2e8f0;
+}
+
+/* ===== HEADER Y TÍTULO PRINCIPAL ===== */
+
+header {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px 30px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Título principal del header (span.title-text) */
+header .title-text {
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0 0 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Título grande (el único que quieres) */
+header h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0 0 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Botones debajo del título centrados */
+.mode-switch {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Botones del menú superior */
+.mode-link {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  background: #111827;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.mode-link:hover {
+  background: #4f46e5;
+  border-color: #6366f1;
+}
+
+/* Layout general */
+.tb-container {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 2fr 1.1fr;
+  gap: 20px;
+}
+
+/* Columna principal: form + preview */
+.tb-main {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+.tb-form,
+.tb-preview,
+.tb-teams > div,
+.tb-teams ul {
+  background: #1e1e2f;
+  border: 1px solid #2a2a40;
+  border-radius: 12px;
+}
+
+/* Formulario */
+.tb-form {
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tb-form h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.field-group label {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  margin-bottom: 4px;
+}
+
+.field-group input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #2a2a40;
+  background: #131324;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.field-group input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+h3 {
+  margin: 15px 0 8px;
+  font-size: 1rem;
+}
+
+/* EVs e IVs */
+.ev-grid,
+.iv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Moves */
+.moves-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.moves-grid input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #2a2a40;
+  background: #131324;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.moves-grid input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+.buttons-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#tb-clear,
+#tb-add-to-team {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#tb-clear {
+  background: #4b5563;
+  color: #f9fafb;
+}
+
+#tb-clear:hover {
+  background: #374151;
+}
+
+#tb-add-to-team {
+  background: #22c55e;
+  color: #022c22;
+}
+
+#tb-add-to-team:hover {
+  background: #16a34a;
+}
+
+/* Preview */
+.tb-preview {
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tb-preview h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.tb-preview p {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+#pv-evs,
+#pv-ivs {
+  margin-top: 8px;
+}
+
+#pv-moves {
+  list-style: none;
+  margin-top: 8px;
+}
+
+#pv-moves li {
+  background: #25253a;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-left: 3px solid #4ade80;
+  font-size: 0.9rem;
+}
+
+/* Panel de equipos */
+.tb-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teams-header {
+  background: #1e1e2f;
+  border: 1px solid #2a2a40;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.teams-header h2 {
+  font-size: 1.1rem;
+}
+
+#btn-new-team {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: none;
+  background: #3b82f6;
+  color: #f9fafb;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+#btn-new-team:hover {
+  background: #2563eb;
+}
+
+#teams-list {
+  list-style: none;
+  padding: 10px 0;
+  background: #1e1e2f;
+  border: 1px solid #2a2a40;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.team-card {
+  padding: 10px 12px;
+  border-bottom: 1px solid #2a2a40;
+}
+
+.team-card:last-child {
+  border-bottom: none;
+}
+
+.team-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.team-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.team-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.team-actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.btn-select-team {
+  background: #4b5563;
+  color: #f9fafb;
+}
+
+.btn-select-team.active {
+  background: #6366f1;
+}
+
+.btn-delete-team {
+  background: #dc2626;
+  color: #f9fafb;
+}
+
+.team-members {
+  list-style: none;        /* quita los bullets */
+  margin: 0;               /* sin margen extra arriba/abajo */
+  padding: 6px 4px 0 0;    /* ajusta si quieres un poco de espacio interior */
+  font-size: 0.8rem;
+  color: #cbd5f5;
+}
+
+
+.team-members li {
+  margin-left: 0;          /* por si hay estilos previos */
+  padding-left: 2px;
+}
+
+/* Modal */
+.hidden {
+  display: none !important;
+}
+
+.team-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.team-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.team-modal-content {
+  position: relative;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #020617;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  padding: 20px 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.team-modal-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.team-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.team-modal-close:hover {
+  color: #f97316;
+}
+
+.team-modal-poke {
+  background: #020617;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.team-modal-poke strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.team-modal-poke div {
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+
+.team-modal-poke-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.btn-remove-member {
+  border: none;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  background: #dc2626;
+  color: #f9fafb;
+}
+
+.btn-move-team {
+  border: none;
+  border-radius: 999px;
+  padding: 3px 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  background: #374151;
+  color: #f9fafb;
+}
+
+.btn-move-team:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.tb-import {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #020617;          /* mismo tono que el panel */
+  border-radius: 0.75rem;
+  border: 1px solid #1f2937;
+}
+
+.tb-import h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+#tb-import-text {
+  width: 100%;
+  box-sizing: border-box;
+  background: #020617;
+  color: #e5e7eb;
+  border-radius: 0.5rem;
+  border: 1px solid #374151;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+
+#tb-import-btn {
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid #4b5563;
+  background: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+#tb-import-btn:hover {
+  background: #1f2937;
+}
+
+/* Forzar tema oscuro a TODOS los Select2, no solo dentro del calc */
+.select2-container .select2-choice,
+.select2-container .select2-choice span,
+.select2-container .select2-choice .select2-arrow,
+.select2-drop,
+.select2-drop-active,
+.select2-results,
+.select2-results li,
+.select2-results .select2-result,
+.select2-search input {
+  background-color: #020617 !important;
+  background-image: none !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .tb-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .tb-main {
+    grid-template-columns: 1fr;
+  }
+}

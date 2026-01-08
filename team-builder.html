@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+  <title>Team Builder</title>
+  <link rel="stylesheet" href="team-builder.css">
+</head>
+<body>
+  <header>
+    <h1>Team Builder</h1>
+    <nav class="mode-switch">
+      <a class="mode-link" href="index.html">Encounters</a>
+      <a class="mode-link" href="notes.html">Notes</a>
+      <a class="mode-link" href="checklist.html">Checklist</a>
+      <a class="mode-link" href="damage-calc.html">Damage Calculator</a>
+    </nav>
+  </header>
+
+  <main class="tb-container">
+    <!-- Columna principal: form + preview -->
+    <section class="tb-main">
+      <!-- Formulario -->
+      <section class="tb-form">
+        <h2>Create Pokemon</h2>
+
+        <div class="field-group">
+          <label>Pokemon</label>
+          <input type="text" id="tb-pokemon" placeholder="...">
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Item</label>
+            <input type="text" id="tb-item" placeholder="...">
+          </div>
+          <div class="field-group">
+            <label>Ability</label>
+            <input type="text" id="tb-ability" placeholder="...">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Nature</label>
+            <input type="text" id="tb-nature" placeholder="...">
+          </div>
+          <div class="field-group">
+            <label>Level</label>
+            <input type="number" id="tb-level" value="50" min="1" max="100">
+          </div>
+        </div>
+
+        <h3>EVs</h3>
+        <div class="ev-grid">
+          <div class="field-group">
+            <label>HP</label>
+            <input type="number" id="tb-ev-hp" value="0" min="0" max="255">
+          </div>
+          <div class="field-group">
+            <label>Atk</label>
+            <input type="number" id="tb-ev-atk" value="0" min="0" max="255">
+          </div>
+          <div class="field-group">
+            <label>Def</label>
+            <input type="number" id="tb-ev-def" value="0" min="0" max="255">
+          </div>
+          <div class="field-group">
+            <label>SpA</label>
+            <input type="number" id="tb-ev-spa" value="0" min="0" max="255">
+          </div>
+          <div class="field-group">
+            <label>SpD</label>
+            <input type="number" id="tb-ev-spd" value="0" min="0" max="255">
+          </div>
+          <div class="field-group">
+            <label>Spe</label>
+            <input type="number" id="tb-ev-spe" value="0" min="0" max="255">
+          </div>
+        </div>
+
+        <h3>IVs</h3>
+        <div class="iv-grid">
+          <div class="field-group">
+            <label>HP</label>
+            <input type="number" id="tb-iv-hp" value="31" min="0" max="31">
+          </div>
+          <div class="field-group">
+            <label>Atk</label>
+            <input type="number" id="tb-iv-atk" value="31" min="0" max="31">
+          </div>
+          <div class="field-group">
+            <label>Def</label>
+            <input type="number" id="tb-iv-def" value="31" min="0" max="31">
+          </div>
+          <div class="field-group">
+            <label>SpA</label>
+            <input type="number" id="tb-iv-spa" value="31" min="0" max="31">
+          </div>
+          <div class="field-group">
+            <label>SpD</label>
+            <input type="number" id="tb-iv-spd" value="31" min="0" max="31">
+          </div>
+          <div class="field-group">
+            <label>Spe</label>
+            <input type="number" id="tb-iv-spe" value="31" min="0" max="31">
+          </div>
+        </div>
+
+        <h3>Moves</h3>
+        <div class="moves-grid">
+          <input type="text" id="tb-move1" placeholder="Move 1">
+          <input type="text" id="tb-move2" placeholder="Move 2">
+          <input type="text" id="tb-move3" placeholder="Move 3">
+          <input type="text" id="tb-move4" placeholder="Move 4">
+        </div>
+
+        <div class="buttons-row">
+          <button id="tb-clear">Clear</button>
+          <button id="tb-add-to-team">Add to the team</button>
+        </div>
+      </section>
+
+      <!-- Vista previa -->
+      <section class="tb-preview">
+        <h2 id="pv-name">Pokemon</h2>
+        <p id="pv-nature">Nature: —</p>
+        <p id="pv-item">Item: —</p>
+        <p id="pv-ability">Ability: —</p>
+        <p id="pv-level">Level: 50</p>
+
+        <p id="pv-evs">EVs: HP 0 / Atk 0 / Def 0 / SpA 0 / SpD 0 / Spe 0</p>
+        <p id="pv-ivs">IVs: HP 31 / Atk 31 / Def 31 / SpA 31 / SpD 31 / Spe 31</p>
+
+        <h3>Moves</h3>
+        <ul id="pv-moves"></ul>
+      </section>
+    </section>
+
+    <!-- Panel de equipos -->
+    <aside class="tb-teams">
+      <div class="teams-header">
+        <h2>My Teams</h2>
+        <button id="btn-new-team">+ New Team</button>
+      </div>
+
+      <ul id="teams-list"></ul>
+      <div class="tb-import">
+        <h3>Import Showdown</h3>
+        <textarea id="tb-import-text" rows="10" placeholder="Pega aquí el equipo de Showdown"></textarea>
+        <button id="tb-import-btn">Importar equipo</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal detalle equipo -->
+  <div id="team-modal" class="team-modal hidden">
+  <div class="team-modal-backdrop"></div>
+  <div class="team-modal-content">
+    <button id="team-modal-close" class="team-modal-close">×</button>
+    <h2 id="team-modal-title" class="team-modal-title">Team</h2>
+    <div id="team-modal-body"></div>
+  </div>
+</div>
+
+  <script src="team-builder.js"></script>
+</body>
+</html>
