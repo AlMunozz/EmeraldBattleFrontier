@@ -59,14 +59,14 @@ fetch('pokemon.json')
             _nameLower: p.species.toLowerCase()
         }));
 
-        console.log(pokemonList.length, 'builds cargados');
+        console.log(pokemonList.length, 'builds loaded');
 
         // Al cargar, no mostramos nada todavía
         els.results.innerHTML = '';
     })
     .catch(e => {
-        console.error('pokemon.json no encontrado:', e);
-        alert('ERROR: pokemon.json no encontrado');
+        console.error('pokemon.json not found:', e);
+        alert('ERROR: pokemon.json not found');
     });
 
 // Búsqueda
@@ -147,11 +147,11 @@ function showDetail(key) {
     );
 
     if (!currentBuild) {
-        alert('Build no encontrado');
+        alert('Build not found');
         return;
     }
 
-    console.log('Build seleccionado:', currentBuild.species);
+    console.log('Build selected:', currentBuild.species);
 
     els.speciesName.innerHTML =
         `${currentBuild.species} <small>(Set ${currentBuild.set})</small>`;

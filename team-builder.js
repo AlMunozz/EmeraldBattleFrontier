@@ -169,9 +169,9 @@ function addCurrentPokemonToSelectedTeam() {
 
   if (!result || !result.ok) {
     if (result && result.error === 'evs') {
-      alert('El total de EVs no puede superar 510.');
+      alert('The total EVs cannot exceed 510.');
     } else {
-      alert('Primero escribe el nombre del Pokémon.');
+      alert('Input Pokemon´s name.');
     }
     return;
   }
@@ -184,12 +184,12 @@ function addCurrentPokemonToSelectedTeam() {
 
   const team = teams.find(t => t.id === selectedTeamId);
   if (!team) {
-    alert('No se encontró el equipo seleccionado.');
+    alert('Could not find selected team.');
     return;
   }
 
   if (team.members.length >= 3) {
-    alert('Este equipo ya tiene 3 Pokémon.');
+    alert('This team already has 3 Pokemons.');
     return;
   }
 
@@ -217,7 +217,7 @@ function renderTeams() {
 
   if (!teams.length) {
     teamsListEl.innerHTML =
-      '<li class="team-card"><span style="font-size:0.85rem;color:#9ca3af;">No hay equipos aún. Crea uno nuevo.</span></li>';
+      '<li class="team-card"><span style="font-size:0.85rem;color:#9ca3af;">No teams yet. Create a new one.</span></li>';
     return;
   }
 
@@ -234,7 +234,7 @@ function renderTeams() {
 
     // doble clic para renombrar
     nameSpan.addEventListener('dblclick', () => {
-      const nuevo = prompt('Nuevo nombre para el equipo:', team.name);
+      const nuevo = prompt('New team´s name:', team.name);
       if (nuevo && nuevo.trim()) {
         renameTeam(team.id, nuevo.trim());
       }
@@ -297,7 +297,7 @@ function renderTeams() {
 
     if (!team.members.length) {
       const emptyLi = document.createElement('li');
-      emptyLi.textContent = '— vacío —';
+      emptyLi.textContent = '— empty —';
       membersUl.appendChild(emptyLi);
     } else {
       team.members.forEach((m, idx) => {
@@ -322,7 +322,7 @@ function openTeamModal(team) {
 
   if (!team.members.length) {
     teamModalBodyEl.innerHTML =
-      '<p style="font-size:0.9rem;color:#9ca3af;">Este equipo está vacío. Añade Pokémon desde el formulario.</p>';
+      '<p style="font-size:0.9rem;color:#9ca3af;">This team is empty. Add a new Pokemon.</p>';
   } else {
     let html = '';
     for (let i = 0; i < team.members.length; i++) {
@@ -378,7 +378,7 @@ teamModalBodyEl.addEventListener('click', (e) => {
   const team = teams.find(t => t.id === selectedTeamId);
   if (!team) return;
 
-  if (!confirm('¿Eliminar este Pokémon del equipo?')) return;
+  if (!confirm('¿Delete the whole team?')) return;
 
   team.members.splice(index, 1);
   saveTeams();
@@ -403,13 +403,13 @@ const importBtn      = document.getElementById('tb-import-btn');
 importBtn.addEventListener('click', () => {
   const text = importTextArea.value.trim();
   if (!text) {
-    alert('Pega un equipo de Showdown primero.');
+    alert('Paste a Showdown team first.');
     return;
   }
 
   const parsed = parseShowdownTeam(text);
   if (!parsed.length) {
-    alert('No se pudo leer ningún Pokémon del texto.');
+    alert('Wrong format. Could not detect any Pokemon on the text.');
     return;
   }
 
@@ -427,7 +427,7 @@ importBtn.addEventListener('click', () => {
   saveTeams();
   renderTeams();
   importTextArea.value = '';      // limpia el cuadro
-  alert('Equipo importado correctamente.');
+  alert('Team correctly imported.');
 });
 
 function parseShowdownTeam(text) {

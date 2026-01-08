@@ -75,7 +75,7 @@ function createEmptyNote() {
   const id = 'note-' + Date.now();
   const newNote = {
     id,
-    title: 'Sin título',
+    title: 'No title',
     body: ''
   };
 
@@ -94,7 +94,7 @@ function saveCurrentNote() {
   const note = notes.find(n => n.id === selectedId);
   if (!note) return;
 
-  note.title = titleInput.value.trim() || 'Sin título';
+  note.title = titleInput.value.trim() || 'No title';
   note.body = bodyInput.value;
   saveNotes();
   renderNotesList();
@@ -116,7 +116,7 @@ function deleteCurrentNoteById(id) {
 // modal
 function openNoteModal(note) {
   if (!note) return;
-  noteModalTitleEl.textContent = note.title || 'Sin título';
+  noteModalTitleEl.textContent = note.title || 'No title';
   noteModalBodyEl.textContent = note.body || '';
   noteModalEl.classList.remove('hidden');
 }
@@ -137,7 +137,7 @@ notesListEl.addEventListener('click', e => {
   const delBtn = e.target.closest('.note-item-delete');
   if (delBtn) {
     const id = delBtn.dataset.id;
-    if (confirm('¿Eliminar esta nota?')) {
+    if (confirm('¿Delete this note?')) {
       deleteCurrentNoteById(id);
     }
     return;

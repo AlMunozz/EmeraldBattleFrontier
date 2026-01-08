@@ -1,7 +1,5 @@
 # POKEMON EMERALD BATTLE FRONTIER DATABASE
 
-#### Video Demo: https://youtu.be/8xESS23MOqA
-
 #### Description:
 Pokémon Battle Frontier Companion – Project Description
 This project is a complete web app focused on the Battle Frontier from Pokémon Emerald. The main idea is to provide players with a modern, clean, and easy-to-use interface. They can explore data, create teams, make notes, check progress, and calculate damage. It has everything they need to master the Battle Frontier. The design features a dark, elegant look that adjusts to users, making the experience smoother and more visually appealing.
