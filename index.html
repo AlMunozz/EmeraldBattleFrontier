@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Battle Frontier</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<!-- Modal nota -->
+<div id="note-modal" class="note-modal hidden">
+  <div class="note-modal-backdrop"></div>
+  <div class="note-modal-content">
+    <h2 id="note-modal-title"></h2>
+    <pre id="note-modal-body"></pre>
+  </div>
+</div>
+
+<body>
+    <header>
+        <h1>Emerald Battle Frontier Encounters</h1>
+
+        <nav class="mode-switch">
+            <a class="mode-link" href="team-builder.html">Team Builder</a>
+            <a class="mode-link" href="notes.html">Notes</a>
+            <a class="mode-link" href="checklist.html">Checklist</a>
+            <a class="mode-link" href="damage-calc.html">Damage Calculator</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <input
+            type="search"
+            id="search"
+            placeholder="Search by name (jolteon, gengar, sceptile...)"
+        >
+
+        <section id="results" aria-live="polite"></section>
+
+        <section id="detail" class="hidden" aria-live="polite">
+            <h2 id="species-name"></h2>
+
+            <div class="stats-grid">
+                <div>Type: <span id="type"></span></div>
+                <div>Set: <span id="set"></span></div>
+                <div>Nature: <span id="nature"></span></div>
+                <div>Item: <span id="item"></span></div>
+                <div>Ability: <span id="ability"></span></div>
+                <div>Speed: <span id="speed"></span></div>
+            </div>
+
+            <div class="evs">
+                <strong>EV Spread:</strong>
+                HP:<span id="ev-hp"></span>
+                Atk:<span id="ev-atk"></span>
+                Def:<span id="ev-def"></span>
+                SpA:<span id="ev-spa"></span>
+                SpD:<span id="ev-spd"></span>
+                Spe:<span id="ev-spe"></span>
+            </div>
+
+            <div class="moves">
+                <strong>Moveset:</strong>
+                <ul id="moves-list"></ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

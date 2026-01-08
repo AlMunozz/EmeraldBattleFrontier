@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+  <link rel="stylesheet" href="notes.css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <h1>Notes</h1>
+    <nav class="mode-switch">
+      <a class="mode-link" href="index.html">Encounters</a>
+      <a class="mode-link" href="team-builder.html">Team Builder</a>
+      <a class="mode-link" href="checklist.html">Checklist</a>
+      <a class="mode-link" href="damage-calc.html">Damage Calculator</a>
+    </nav>
+  </header>
+
+  <main class="notes-container">
+    <!-- Columna izquierda: lista de notas -->
+    <aside class="notes-sidebar">
+      <div class="notes-header">
+        <h2>My notes</h2>
+        <button id="btn-new-note">+ New Note</button>
+      </div>
+      <ul id="notes-list"></ul>
+    </aside>
+
+    <!-- Columna derecha: editor (para escribir/guardar) -->
+    <section class="notes-editor">
+      <input
+        id="note-title"
+        type="text"
+        placeholder="Title"
+        autocomplete="off"
+      >
+      <textarea
+        id="note-body"
+        placeholder="Type anything here..."
+      ></textarea>
+      <div class="notes-actions">
+        <button id="btn-save-note">Save</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal para leer una nota en grande -->
+  <div id="note-modal" class="note-modal hidden">
+    <div class="note-modal-backdrop"></div>
+    <div class="note-modal-content">
+      <button id="note-modal-close" class="note-modal-close">×</button>
+      <h2 id="note-modal-title" class="note-modal-title"></h2>
+      <pre id="note-modal-body" class="note-modal-body"></pre>
+    </div>
+  </div>
+
+  <script src="notes.js"></script>
+</body>
+</html>

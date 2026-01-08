@@ -1,0 +1,277 @@
+/* ---------- Bloque general del calculador ---------- */
+#damage-calc {
+  background: #0f0f23;   /* color de tu web */
+  color: #e2e8f0;
+  max-width: 1247px;     /* igual que el original */
+  margin: 30px auto 60px;
+  font-size: 10pt;       /* como shared_controls */
+  line-height: 1.3;
+}
+
+/* Usa el layout original de .wrapper */
+#damage-calc .wrapper {
+  padding: 0 1em;
+  margin: 0 auto;
+}
+
+/* ---------- Paneles: tema, sin tocar floats salvo donde se indica ---------- */
+#damage-calc .panel,
+#damage-calc .field-info,
+#damage-calc .poke-info,
+#damage-calc .move-result-group,
+#damage-calc .main-result-group,
+#damage-calc .poke-import {
+  background: #1e1e2f;
+  border: 1px solid #2a2a40;
+}
+
+/* Asegurar mismo ancho para P1, Field y P2 (como original) */
+#damage-calc .poke-info,
+#damage-calc .field-info,
+#damage-calc .poke-import {
+  width: 28em;   /* valor de shared_controls.css */
+}
+
+/* Centrar el panel Field entre los otros dos */
+#damage-calc .field-info {
+  float: none;
+  margin: 5px auto;
+}
+
+/* Los paneles de Pokémon se mantienen a izquierda y derecha */
+#damage-calc #p1.panel,
+#damage-calc #p2.panel {
+  float: left;
+}
+
+/* Margen general de cada panel */
+#damage-calc .panel {
+  margin: 5px;
+}
+
+/* ---------- Botones ---------- */
+#damage-calc .btn,
+#damage-calc .button {
+  background-color: #222;
+  color: #eee;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-color: #444;
+}
+
+#damage-calc .btn:hover,
+#damage-calc .btn:focus,
+#damage-calc .btn.active,
+#damage-calc .button:hover {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+/* ---------- Inputs / selects ---------- */
+#damage-calc input,
+#damage-calc select,
+#damage-calc textarea {
+  background-color: #181818;
+  color: #eee;
+  border-color: #444;
+}
+
+/* Evitar que layouts generales afecten al calc */
+#damage-calc fieldset {
+  background-color: #1e1e2f;
+}
+
+/* ---------- Field: título, pestañas y espaciado ---------- */
+#damage-calc .field-info legend {
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+/* Centrar contenido del Field */
+#damage-calc .field-info {
+  text-align: center;
+}
+
+/* Pestañas Singles/Doubles y None/Sun/Rain/Sand/Hail centradas */
+#damage-calc .field-info .btn-group,
+#damage-calc .field-info .btn-group .btn {
+  float: none;
+  display: inline-block;
+}
+
+#damage-calc .field-info .btn {
+  text-align: center;
+}
+
+/* Separación entre pestañas y la línea */
+#damage-calc .field-info hr {
+  margin: 4px 0;
+}
+
+/* ---------- Área de import ---------- */
+#damage-calc .poke-import legend,
+#damage-calc .poke-import legend * {
+  color: #e5e7eb;
+  text-align: center;
+}
+
+#damage-calc .poke-import legend {
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+/* Centrar panel de import */
+#damage-calc .poke-import {
+  text-align: center;
+}
+
+#damage-calc .poke-import textarea {
+  background-color: #020617;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  min-height: 140px;
+  display: block;
+  margin: 0 auto 6px;
+}
+
+#damage-calc .poke-import input[type="button"],
+#damage-calc .poke-import input[type="submit"],
+#damage-calc .poke-import .button {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+#damage-calc .poke-import input[type="button"]:hover,
+#damage-calc .poke-import input[type="submit"]:hover,
+#damage-calc .poke-import .button:hover {
+  background: #3b82f6;
+  border-color: #6366f1;
+}
+
+/* ---------- Layout general de tu página (no tocar calc) ---------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f0f23;
+  color: #e2e8f0;
+}
+
+.tb-container {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 2fr 1.1fr;
+  gap: 20px;
+}
+
+#damage-calc .title-text {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 8px;
+  font-size: 1.6em;
+  text-align: center;
+  color: #a855f7;
+}
+
+/* --------- Estilo oscuro para Select2 (Pokémon, movimientos) --------- */
+
+/* Caja cerrada del selector */
+#damage-calc .select2-container .select2-choice {
+  background-color: #020617 !important;
+  background-image: none !important;
+  border: 1px solid #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Flecha del selector */
+#damage-calc .select2-container .select2-choice .select2-arrow {
+  border-left: 1px solid #374151 !important;
+  background: #111827 !important;
+  background-image: none !important;
+}
+
+/* Lista desplegable */
+#damage-calc .select2-drop {
+  background: #020617 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #374151 !important;
+}
+
+/* Opciones dentro de la lista */
+#damage-calc .select2-results .select2-result-label {
+  color: #e5e7eb !important;
+}
+
+#damage-calc .select2-results .select2-highlighted {
+  background: #3b82f6 !important;   /* morado/azul de tu tema */
+  color: #ffffff !important;
+}
+
+/* Cuadro de búsqueda dentro del dropdown */
+#damage-calc .select2-search input {
+  background: #020617 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #374151 !important;
+}
+
+/* Fondo del panel desplegable completo */
+#damage-calc .select2-drop,
+#damage-calc .select2-drop-active {
+  background-color: #020617 !important;
+  background-image: none !important;
+  border: 1px solid #374151 !important;
+}
+
+/* Fondo de cada opción de la lista (estado normal) */
+#damage-calc .select2-results .select2-result {
+  background-color: #020617 !important;
+}
+
+/* Fondo de toda el área de resultados (lista) */
+#damage-calc .select2-results {
+  background-color: #020617 !important;
+}
+
+/* Cada fila/entrada de la lista */
+#damage-calc .select2-results li {
+  background-color: #020617 !important;
+}
+
+html,
+body {
+  background-color: #0f0f23;
+  color: #e2e8f0;
+}
+
+/* Resaltar cada Pokémon en el desplegable al pasar el ratón */
+.select2-results li:hover > .select2-result-label,
+.select2-results li.select2-highlighted > .select2-result-label {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  cursor: pointer;
+}
+/* PRUEBA DIRECTA SOLO PARA VER QUE PISA ESTILOS */
+/* Selects */
+#damage-calc select {
+  background-color: #020617 !important;
+  color: #cbd5f5 !important;        /* gris azulado suave */
+  border: 1px solid #444 !important;
+}
+
+/* Inputs numéricos y de stats */
+#damage-calc input[type="number"],
+#damage-calc input[type="tel"],
+#damage-calc input.evs,
+#damage-calc input.ivs,
+#damage-calc .poke-info input {
+  background-color: #020617 !important;
+  color: #cbd5f5 !important;        /* mismo tono que los selects */
+  border: 1px solid #444 !important;
+}
+
+
+
+
