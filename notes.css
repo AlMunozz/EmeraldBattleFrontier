@@ -252,3 +252,31 @@ h1 {
   cursor: pointer;
 }
 
+/* --- DEBUG: forzar una sola columna siempre que el ancho sea <= 1200px --- */
+@media (max-width: 1024px) {
+  .notes-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+    padding: 0 10px 30px;
+  }
+
+  .notes-sidebar,
+  .notes-editor {
+    width: 100% !important;
+  }
+
+  .notes-sidebar {
+    order: 1 !important;
+  }
+
+  .notes-editor {
+    order: 2 !important;
+  }
+}
+
+
+
+
+
+
