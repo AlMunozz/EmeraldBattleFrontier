@@ -62,6 +62,7 @@ h1 {
   border-color: #6366f1;
 }
 
+/* Layout notes */
 .notes-container {
   max-width: 1100px;
   margin: 0 auto 40px;
@@ -144,6 +145,7 @@ h1 {
   box-shadow: 0 0 0 1px #3b82f6;
 }
 
+/* Editor */
 .notes-editor {
   padding: 16px 18px;
   display: flex;
@@ -201,6 +203,7 @@ h1 {
   display: none !important;
 }
 
+/* Modal */
 .note-modal {
   position: fixed;
   inset: 0;
@@ -252,31 +255,49 @@ h1 {
   cursor: pointer;
 }
 
-/* --- DEBUG: forzar una sola columna siempre que el ancho sea <= 1200px --- */
+/* Una columna hasta tablet */
 @media (max-width: 1024px) {
   .notes-container {
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
     padding: 0 10px 30px;
   }
 
   .notes-sidebar,
   .notes-editor {
-    width: 100% !important;
-  }
-
-  .notes-sidebar {
-    order: 1 !important;
-  }
-
-  .notes-editor {
-    order: 2 !important;
+    width: 100%;
   }
 }
 
+/* Layout móvil: más estrecho y alto */
+@media (max-width: 800px) {
+  body {
+    font-size: 18px;
+  }
 
+  header {
+    max-width: 360px;
+    width: 100%;
+    padding: 16px 14px;
+    margin: 12px auto;
+  }
 
+  .notes-container {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto 30px;
+    padding: 0 10px 30px;
+    align-items: center;
+  }
 
+  .notes-sidebar,
+  .notes-editor {
+    max-width: 320px;
+    width: 100%;
+  }
 
-
+  #note-body {
+    min-height: 260px;
+  }
+}
