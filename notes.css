@@ -44,6 +44,11 @@ h1 {
 
 .mode-switch {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;              /* permite varias filas */
+  justify-content: center;      /* centra cada fila */
+  column-gap: 10px;             /* espacio horizontal entre botones */
+  row-gap: 8px;                 /* ESPACIO VERTICAL entre filas */
 }
 
 .mode-link {

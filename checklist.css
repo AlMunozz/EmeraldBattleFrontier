@@ -40,6 +40,11 @@ h1 {
 
 .mode-switch {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;              /* permite varias filas */
+  justify-content: center;      /* centra cada fila */
+  column-gap: 10px;             /* espacio horizontal entre botones */
+  row-gap: 8px;                 /* ESPACIO VERTICAL entre filas */
 }
 
 .mode-link {
@@ -241,6 +246,25 @@ h1 {
   .cl-progress-circle {
     width: 140px;
     height: 140px;
+  }
+}
+
+/* Header del checklist bien alineado en móvil */
+@media (max-width: 600px) {
+  .cl-header {
+    display: flex;
+    justify-content: space-between;  /* título a la izquierda, botón a la derecha */
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cl-header h2 {
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+
+  #cl-clear {
+    flex-shrink: 0;                 /* evita que se encoja encima del texto */
   }
 }
 
