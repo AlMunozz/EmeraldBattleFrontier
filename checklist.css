@@ -181,8 +181,68 @@ h1 {
 }
 
 /* responsive */
-@media (max-width: 800px) {
+/* responsive */
+@media (max-width: 1024px) {
   .cl-container {
     grid-template-columns: 1fr;
   }
+
+  /* orden y espaciado en vertical */
+  .cl-panel {
+    order: 1;
+    margin-bottom: 12px;
+  }
+
+  .cl-progress {
+    order: 2;
+    margin-bottom: 12px;
+    max-width: 400px;
+    margin-inline: auto;
+  }
 }
+
+/* móvil pequeño: texto más grande */
+@media (max-width: 600px) {
+  body {
+    font-size: 18px; /* sube aún más en móvil */
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .cl-header h2,
+  .cl-progress h2 {
+    font-size: 1.2rem;
+  }
+
+  .cl-list label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cl-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cl-panel {
+    order: 1;
+    margin-bottom: 16px;
+  }
+
+  .cl-progress {
+    order: 2;
+    margin-bottom: 16px;
+    width: 100%;       /* ocupa todo el ancho de la columna */
+    max-width: none;   /* quita límites */
+  }
+
+  .cl-progress-circle {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
+

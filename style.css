@@ -9,6 +9,7 @@ body {
     background: #0f0f23;
     color: #e2e8f0;
     line-height: 1.6;
+    font-size: 16px; /* nuevo tamaño base */
 }
 
 /* Header - TITULO CENTRADO */
@@ -328,5 +329,34 @@ h1 {
     background: #4f46e5;
     border-color: #6366f1;
 }
+
+@media (max-width: 600px) {
+  header {
+    padding: 16px 16px;
+    margin: 10px 8px;
+    align-items: flex-start;   /* deja de centrar todo verticalmente */
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    text-align: left;          /* título alineado a la izquierda */
+  }
+
+  .mode-switch {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;           /* que los botones salten de línea */
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .mode-link {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
+
 
 
