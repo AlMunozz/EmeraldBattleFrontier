@@ -175,4 +175,10 @@ function showDetail(key) {
         .join('');
 
     els.detail.classList.remove('hidden');
+
+    // 👇 Añadir scroll suave al detalle
+    els.detail.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+    });
 }
