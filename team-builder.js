@@ -5,14 +5,14 @@ const TEAMS_KEY = 'adv_teams_v1';
 let teams = [];
 let selectedTeamId = null;
 
-const teamsListEl = document.getElementById('teams-list');
-const newTeamBtn = document.getElementById('btn-new-team');
-const addToTeamBtn = document.getElementById('tb-add-to-team');
+const teamsListEl   = document.getElementById('teams-list');
+const newTeamBtn    = document.getElementById('btn-new-team');
+const addToTeamBtn  = document.getElementById('tb-add-to-team');
 
-const teamModalEl = document.getElementById('team-modal');
-const teamModalTitleEl = document.getElementById('team-modal-title');
-const teamModalBodyEl = document.getElementById('team-modal-body');
-const teamModalCloseBtn = document.getElementById('team-modal-close');
+const teamModalEl        = document.getElementById('team-modal');
+const teamModalTitleEl   = document.getElementById('team-modal-title');
+const teamModalBodyEl    = document.getElementById('team-modal-body');
+const teamModalCloseBtn  = document.getElementById('team-modal-close');
 
 /*** FORM Y PREVIEW ***/
 
@@ -23,19 +23,19 @@ const abilityInput  = document.getElementById('tb-ability');
 const natureInput   = document.getElementById('tb-nature');
 const levelInput    = document.getElementById('tb-level');
 
-const evHpInput  = document.getElementById('tb-ev-hp');
-const evAtkInput = document.getElementById('tb-ev-atk');
-const evDefInput = document.getElementById('tb-ev-def');
-const evSpaInput = document.getElementById('tb-ev-spa');
-const evSpdInput = document.getElementById('tb-ev-spd');
-const evSpeInput = document.getElementById('tb-ev-spe');
+const evHpInput   = document.getElementById('tb-ev-hp');
+const evAtkInput  = document.getElementById('tb-ev-atk');
+const evDefInput  = document.getElementById('tb-ev-def');
+const evSpaInput  = document.getElementById('tb-ev-spa');
+const evSpdInput  = document.getElementById('tb-ev-spd');
+const evSpeInput  = document.getElementById('tb-ev-spe');
 
-const ivHpInput  = document.getElementById('tb-iv-hp');
-const ivAtkInput = document.getElementById('tb-iv-atk');
-const ivDefInput = document.getElementById('tb-iv-def');
-const ivSpaInput = document.getElementById('tb-iv-spa');
-const ivSpdInput = document.getElementById('tb-iv-spd');
-const ivSpeInput = document.getElementById('tb-iv-spe');
+const ivHpInput   = document.getElementById('tb-iv-hp');
+const ivAtkInput  = document.getElementById('tb-iv-atk');
+const ivDefInput  = document.getElementById('tb-iv-def');
+const ivSpaInput  = document.getElementById('tb-iv-spa');
+const ivSpdInput  = document.getElementById('tb-iv-spd');
+const ivSpeInput  = document.getElementById('tb-iv-spe');
 
 // Limitar EVs 0–252
 [evHpInput, evAtkInput, evDefInput, evSpaInput, evSpdInput, evSpeInput].forEach(input => {
@@ -66,7 +66,8 @@ const pvEvsEl     = document.getElementById('pv-evs');
 const pvIvsEl     = document.getElementById('pv-ivs');
 const pvMovesEl   = document.getElementById('pv-moves');
 
-// Construir objeto Pokémon actual a partir del formulario
+/*** DATOS DEL POKÉMON ACTUAL ***/
+
 function getCurrentPokemonData() {
   const name = pokemonInput.value.trim();
   if (!name) {
@@ -74,13 +75,14 @@ function getCurrentPokemonData() {
   }
 
   const evs = {
-    hp:  Number(evHpInput.value)  || 0,
-    atk: Number(evAtkInput.value) || 0,
-    def: Number(evDefInput.value) || 0,
-    spa: Number(evSpaInput.value) || 0,
-    spd: Number(evSpdInput.value) || 0,
-    spe: Number(evSpeInput.value) || 0,
+    hp:  Number(evHpInput.value),
+    atk: Number(evAtkInput.value),
+    def: Number(evDefInput.value),
+    spa: Number(evSpaInput.value),
+    spd: Number(evSpdInput.value),
+    spe: Number(evSpeInput.value),
   };
+
 
   const ivs = {
     hp:  Number(ivHpInput.value)  || 0,
@@ -98,10 +100,9 @@ function getCurrentPokemonData() {
     move4Input.value.trim(),
   ].filter(m => m);
 
-  const totalEVs = evs.hp + evs.atk + evs.def + evs.spa + evs.spd + evs.spe;
-  if (totalEVs > 510) {
-    return { ok: false, error: 'evs' };
-  }
+  const totalEVs =
+    evs.hp + evs.atk + evs.def + evs.spa + evs.spd + evs.spe;
+  const tooManyEVs = totalEVs > 510;
 
   return {
     ok: true,
@@ -113,19 +114,79 @@ function getCurrentPokemonData() {
     evs,
     ivs,
     moves,
+    tooManyEVs,
   };
 }
 
 function clampNumberInput(input, min, max) {
+  if (input.value === '') return;  // deja escribir y borrar
   let value = parseInt(input.value, 10);
-  if (isNaN(value)) {
-    input.value = min;
-    return;
-  }
+  if (isNaN(value)) return;
   if (value < min) value = min;
   if (value > max) value = max;
   input.value = value;
 }
+
+/*** PREVIEW EN TIEMPO REAL ***/
+
+function updatePreview() {
+  const result = getCurrentPokemonData();
+
+  // Cabecera
+  pvNameEl.textContent    = pokemonInput.value.trim() || 'Pokemon';
+  pvNatureEl.textContent  = `Nature: ${natureInput.value.trim() || '—'}`;
+  pvItemEl.textContent    = `Item: ${itemInput.value.trim() || '—'}`;
+  pvAbilityEl.textContent = `Ability: ${abilityInput.value.trim() || '—'}`;
+  pvLevelEl.textContent   = `Level: ${levelInput.value || '50'}`;
+
+  if (!result.ok) {
+    // solo cuando falta nombre
+    pvEvsEl.textContent = 'EVs: —';
+    pvIvsEl.textContent = 'IVs: —';
+    pvMovesEl.innerHTML = '';
+    return;
+  }
+
+  const p  = result;
+  const ev = p.evs;
+  const iv = p.ivs;
+
+  const evText =
+    `HP ${ev.hp || 0} / Atk ${ev.atk || 0} / Def ${ev.def || 0} / ` +
+    `SpA ${ev.spa || 0} / SpD ${ev.spd || 0} / Spe ${ev.spe || 0}`;
+
+  pvEvsEl.textContent =
+    `EVs: ${evText}` + (p.tooManyEVs ? '  (⚠ over 510)' : '');
+
+  const ivText =
+    `HP ${iv.hp || 0} / Atk ${iv.atk || 0} / Def ${iv.def || 0} / ` +
+    `SpA ${iv.spa || 0} / SpD ${iv.spd || 0} / Spe ${iv.spe || 0}`;
+
+  pvIvsEl.textContent = `IVs: ${ivText}`;
+
+  // Moves como lista estilada
+  pvMovesEl.innerHTML = '';
+  p.moves.forEach((move, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${i + 1}.</strong> ${move}`;
+    pvMovesEl.appendChild(li);
+  });
+}
+
+// Inputs que deben refrescar el preview
+const formInputs = [
+  pokemonInput, itemInput, abilityInput, natureInput, levelInput,
+  evHpInput, evAtkInput, evDefInput, evSpaInput, evSpdInput, evSpeInput,
+  ivHpInput, ivAtkInput, ivDefInput, ivSpaInput, ivSpdInput, ivSpeInput,
+  move1Input, move2Input, move3Input, move4Input,
+];
+
+formInputs.forEach(input => {
+  input.addEventListener('input', updatePreview);
+  input.addEventListener('change', updatePreview);
+});
+
+/*** LOCALSTORAGE DE EQUIPOS ***/
 
 function loadTeams() {
   try {
@@ -168,8 +229,8 @@ function renameTeam(id, newName) {
   const team = teams.find(t => t.id === id);
   if (team) {
     team.name = newName;
-    saveTeams();  // Guarda en localStorage
-    renderTeams(); // Actualiza la lista
+    saveTeams();
+    renderTeams();
   }
 }
 
@@ -177,15 +238,16 @@ function addCurrentPokemonToSelectedTeam() {
   const result = getCurrentPokemonData();
 
   if (!result || !result.ok) {
-    if (result && result.error === 'evs') {
-      alert('The total EVs cannot exceed 510.');
-    } else {
-      alert('Input Pokemon´s name.');
-    }
+    alert('Input Pokemon´s name.');
     return;
   }
 
-  const data = result; // aquí ya es el objeto válido
+  if (result.tooManyEVs) {
+    alert('The total EVs cannot exceed 510.');
+    return;
+  }
+
+  const data = result;
 
   if (!selectedTeamId) {
     createNewTeam();
@@ -205,6 +267,9 @@ function addCurrentPokemonToSelectedTeam() {
   team.members.push(data);
   saveTeams();
   renderTeams();
+
+  clearTeamBuilderForm();
+  updatePreview();
 }
 
 // mover equipo arriba/abajo
@@ -241,7 +306,6 @@ function renderTeams() {
     nameSpan.className = 'team-name';
     nameSpan.textContent = team.name;
 
-    // doble clic para renombrar
     nameSpan.addEventListener('dblclick', () => {
       const nuevo = prompt('New team´s name:', team.name);
       if (nuevo && nuevo.trim()) {
@@ -252,7 +316,6 @@ function renderTeams() {
     const actionsDiv = document.createElement('div');
     actionsDiv.className = 'team-actions';
 
-    // botones ordenar
     const upBtn = document.createElement('button');
     upBtn.className = 'btn-move-team';
     upBtn.textContent = '▲';
@@ -265,7 +328,6 @@ function renderTeams() {
     downBtn.disabled = (index === teams.length - 1);
     downBtn.addEventListener('click', () => moveTeam(team.id, 'down'));
 
-    // VIEW: abre modal
     const viewBtn = document.createElement('button');
     viewBtn.className = 'btn-select-team';
     viewBtn.textContent = 'View';
@@ -273,7 +335,6 @@ function renderTeams() {
       openTeamModal(team);
     });
 
-    // EDIT: seleccionar equipo para añadir pokes
     const editBtn = document.createElement('button');
     editBtn.className = 'btn-select-team';
     if (team.id === selectedTeamId) editBtn.classList.add('active');
@@ -406,6 +467,7 @@ if (teams.length) {
 }
 renderTeams();
 
+// Import Showdown
 const importTextArea = document.getElementById('tb-import-text');
 const importBtn      = document.getElementById('tb-import-btn');
 
@@ -435,19 +497,18 @@ importBtn.addEventListener('click', () => {
   selectedTeamId = id;
   saveTeams();
   renderTeams();
-  importTextArea.value = '';      // limpia el cuadro
+  importTextArea.value = '';
   alert('Team correctly imported.');
 });
 
 function parseShowdownTeam(text) {
-  const blocks = text.split(/\n{2,}/); // separa por líneas en blanco
+  const blocks = text.split(/\n{2,}/);
   const result = [];
 
   for (const block of blocks) {
     const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
     if (!lines.length) continue;
 
-    // 1ª línea: "Pikachu @ Light Ball" o "Pikachu"
     const first = lines[0];
     const atIndex = first.indexOf('@');
     let pokemon = first;
@@ -508,3 +569,33 @@ function parseShowdownTeam(text) {
 
   return result;
 }
+
+function clearTeamBuilderForm() {
+  pokemonInput.value  = '';
+  itemInput.value     = '';
+  abilityInput.value  = '';
+  natureInput.value   = '';
+  levelInput.value    = '50';
+
+  evHpInput.value  = '0';
+  evAtkInput.value = '0';
+  evDefInput.value = '0';
+  evSpaInput.value = '0';
+  evSpdInput.value = '0';
+  evSpeInput.value = '0';
+
+  ivHpInput.value  = '31';
+  ivAtkInput.value = '31';
+  ivDefInput.value = '31';
+  ivSpaInput.value = '31';
+  ivSpdInput.value = '31';
+  ivSpeInput.value = '31';
+
+  move1Input.value = '';
+  move2Input.value = '';
+  move3Input.value = '';
+  move4Input.value = '';
+}
+
+// Inicializar preview con el formulario por defecto
+updatePreview();
