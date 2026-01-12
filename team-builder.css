@@ -44,16 +44,18 @@ header h1 {
   background-clip: text;
 }
 
-/* Botones debajo del título centrados */
 .mode-switch {
   margin-top: 10px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;          /* permite que se bajen a otra fila */
+  justify-content: center;  /* centra cada fila */
+  gap: 8px 12px;            /* 8px entre filas, 12px entre columnas */
 }
 
-/* Botones del menú superior */
 .mode-link {
   display: inline-block;
   padding: 6px 14px;
+  margin: 0;               /* sin margen extra */
   border-radius: 999px;
   border: 1px solid #4b5563;
   background: #111827;
